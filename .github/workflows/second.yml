@@ -31,5 +31,4 @@ jobs:
       - name: log date
         run: |
           ls -la
-          unzip ${{ env.ARTIFACT_NAME }}.zip
-          cat data.txt
+          cat date.txt
