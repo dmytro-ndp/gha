@@ -2,6 +2,9 @@ name: second
 
 on: [push]
 
+env:
+  ARTIFACT_NAME: date-info
+
 jobs:
   job1:
     name: Create & upload artifact
@@ -13,7 +16,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: date.txt for ${{ env.ImageOS }}
+          name: ${{ env.ARTIFACT_NAME }}
           path: date.txt
     
   job2:
@@ -23,7 +26,10 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
-          name: date.txt for ${{ env.ImageOS }}
+          name: ${{ env.ARTIFACT_NAME }}
           
       - name: log date
-        run: cat data.txt
+        run: |
+          ls -la
+          unzip ${{ env.ARTIFACT_NAME }}.zip
+          cat data.txt
