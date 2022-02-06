@@ -1,0 +1,29 @@
+name: second
+
+on: [push]
+
+jobs:
+  job1:
+    name: Create & upload artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create file
+        run: date > date.txt
+        
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: date.txt for ${{ env.ImageOS }}
+          path: date.txt
+    
+  job2:
+    name: Download artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: date.txt for ${{ env.ImageOS }}
+          
+      - name: log date
+        run: cat data.txt
