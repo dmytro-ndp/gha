@@ -1,11 +1,20 @@
 name: ci-cd
 
-on: 
+on: [push, pull_request]
 
 jobs:
-  - test
+  test:
+    runs-on: ubuntu-latest
     steps:
-      - run: python hello.py
+      - uses: actions/checkout@v2
+      - run: 'python hello.py'
 
-  - build
-    uses: test
+  build:
+    runs-on: ubuntu-latest
+    needs: [test]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/upload-artifact@v2
+        with:
+          name: source
+          path: hello.py
