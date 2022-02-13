@@ -1,0 +1,13 @@
+name: run dummy action
+
+on: [push, pull_request]
+
+jobs:
+  print:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dmytro-ndp/gha-dummy-action@main
+        env: 
+          D_T_V: "some data"
+        with:
+          args: 'args-to-print'
