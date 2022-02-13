@@ -1,0 +1,11 @@
+name: ci-cd
+
+on: 
+
+jobs:
+  - test
+    steps:
+      - run: python hello.py
+
+  - build
+    uses: test
