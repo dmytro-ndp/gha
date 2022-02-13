@@ -10,4 +10,4 @@ jobs:
         env: 
           D_T_V: "some data"
         with:
-          args: 'args-to-ptint'
+          args: 'args-to-print'
